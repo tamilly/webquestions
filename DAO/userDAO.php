@@ -1,5 +1,20 @@
 <?php
-//https://www.devmedia.com.br/usando-pdo-php-data-objects-para-aumentar-a-produtividade/28446
+
+require_once 'model/user.php';
+require_once 'DAO/databaseCon.php'
+class UserDAO{
+    public static $connection;
+
+    private function __construct(){
+        //
+    }
+
+    public function insert(){
+        
+    }
+}
+
+/*//https://www.devmedia.com.br/usando-pdo-php-data-objects-para-aumentar-a-produtividade/28446
 require_once pweb/ . "model/user.php";
 
 class UserDAO{
@@ -100,6 +115,6 @@ class UserDAO{
         return $u;
     }
     
-}
+}*/
 
 ?>

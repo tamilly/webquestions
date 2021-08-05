@@ -1,4 +1,28 @@
 <?php
+    class DatabaseCon{
+        private $conn;
+
+        public function __construct(){
+            //
+        }
+
+        public static function connect(){
+            try{
+                $this->conn = new PDO("mysql:host=localhost;dbname=dbweb", 'root', '');
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                echo "Connected Sucessfully";
+            }catch(PDOException $e){
+                echo "Connection failed: " . $e->getMessage();
+            }
+        }
+
+        public static function close(){
+            $this->conn = null;
+        }
+    
+    }
+
+/*
     class databaseCon{
         public static $instance;
 
@@ -21,6 +45,6 @@
             return self::$instance;
         }
 
-    }
+    }*/
 
 ?>
