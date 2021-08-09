@@ -15,27 +15,31 @@ class UserDAO{
         if($connection!=null){
             //Getting user data
             //user ID is auto_increment, so I don't need to add it here
+            $stmt = $connection->prepare("INSERT INTO users(name, nickname, pwd, email) VALUES (?,?,?,?)");
+            $stmt->bind_param("ssss", $n, $nn, $pwd, $e);
+
             $n = $user->getName();
             $nn = $user->getNickname();
             $pwd = $user->getPassword();
             $e = $user->getEmail();
-            //Query
-            $sql = "INSERT INTO users(name, nickname, pwd, email)
-                VALUES ('$n', '$nn', '$pwd', '$e')
-                ";
-            //Checking the query
+            $stmt->execute();
+
+            /*Checking the query
             if($connection->query($sql) === TRUE){ 
                 echo "Added successfully! <br/>";
             }else{
                 echo "ERROR! Sorry :( " . $sql . "<br/>" . $connection->error;
-            }
+            }*/
+            echo "Added successfully! <br/>";
+            $stmt->close();
+            $connection->close();
         }else{
             echo "ERROR to connect to database";
         }
     }
 
     public function searchId(){
-        
+
     }
 
     public function delete($user){

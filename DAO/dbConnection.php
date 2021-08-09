@@ -20,15 +20,6 @@ class DBConnection{
     public function getConnection(){
         return $this->con;
     }
-
-    public function close_connection(){
-        mysqli_close($this->con);
-    }
     
-    public function test(){
-        $this->con = 1;
-        echo $this->con;
-        echo "its working";
-    }
 }
 ?>
