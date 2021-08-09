@@ -11,8 +11,8 @@ class UserDAO{
 
     public function insert($user){ //Get user from Controller.php
         //Connecting to database
-        $connection = new DBConnection;
-        if($connection->connect()>0){
+        $connection = DBConnection::connect();
+        if($connection!=null){
             //Getting user data
             //user ID is auto_increment, so I don't need to add it here
             $n = $user->getName();
@@ -24,11 +24,13 @@ class UserDAO{
                 VALUES ('$n', '$nn', '$pwd', '$e')
                 ";
             //Checking the query
-            if(mysqli_query($connection->getConnection(), $sql)){ 
+            if($connection->query($sql) === TRUE){ 
                 echo "Added successfully! <br/>";
             }else{
-                echo "ERROR! Sorry :( " . $sql . "<br/>" . mysqli_error($connection);
+                echo "ERROR! Sorry :( " . $sql . "<br/>" . $connection->error;
             }
+        }else{
+            echo "ERROR to connect to database";
         }
     }
 

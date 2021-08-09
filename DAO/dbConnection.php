@@ -7,14 +7,14 @@ class DBConnection{
         //
     }
     //Create connection
-    public function connect(){
-        $this->con = mysqli_connect("localhost:3306", "root", "", "dbweb");
+    public static function connect(){
+        $con = new mysqli("localhost:3306", "root", "", "dbweb");
         //Check connection
-        if(!$this->con){
-            die("Connection failed: " . mysqli_connect_error());
-            return 0;
+        if($con->connect_error){
+            die("Connection failed: " . $con->connect_error);
+            return null;
         }
-        return 1;
+        return $con;
     }
 
     public function getConnection(){
