@@ -1,16 +1,25 @@
 <?php
-$servername = "localhost";
-$username = "dbweb";
-$password = "";
 
-//Create connection
-$con = new mysqli($servername, $username, $password);
+class DBConnection{
+    private $con;
 
-//Check connection
-if($con->connect_error){
-    die("Connection failed: " . $con->connect_error);
+    public function __construct(){
+        //
+    }
+    //Create connection
+    public static function connect(){
+        $this->con = new mysqli("localhost:3306", "root", "", "dbweb");
+        //Check connection
+        if($con->connect_error){
+            die("Connection failed: " . $con->connect_error);
+        }
+        echo "Connected successfully";
+    }
+
+    public static function close_connection(){
+        $this->con->close();
+    }
+    
+
 }
-
-echo "Connected successfully";
-
 ?>
