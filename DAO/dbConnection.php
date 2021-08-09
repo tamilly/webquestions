@@ -17,6 +17,10 @@ class DBConnection{
         return 1;
     }
 
+    public function getConnection(){
+        return $this->con;
+    }
+
     public function close_connection(){
         mysqli_close($this->con);
     }
