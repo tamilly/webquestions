@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "server";
+$username = "dbweb";
 $password = "";
 
 //Create connection
