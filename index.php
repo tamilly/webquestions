@@ -1,9 +1,7 @@
 <?php
-require_once "DAO/dbConnection.php";
+require_once "DAO/userDAO.php";
 echo "welcome";
-$connection = new DBConnection;
-$connection->connect();
-$connection->test();
-
+$users = new UserDAO;
+$users->insert();
 ?>
  
