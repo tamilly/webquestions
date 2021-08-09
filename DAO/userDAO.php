@@ -36,16 +36,36 @@ class UserDAO{
     public function search($search){
         $this->connection = DBConnection::connect();
         if($this->connection!=null){
-            $sql = "SELECT * from users WHERE id = '$search' or name like '$search'";
+            $sql = "SELECT * from users WHERE id = '$search%' or name like '$search%'";
             $result = $this->connection->query($sql);
 
             if($result->num_rows > 0){
                 //Output data of each row
                 while($row = $result->fetch_assoc()){
-                    echo "ID: " . $row["id"]. "Name: " . $row["name"] . "Email:" . $row["email"] . "<br>";
+                    echo "ID: " . $row["id"]. "Name: " . $row["name"] . "Nickname: " . $row["nickname"] . "Email:" . $row["email"] . "<br>";
                 }
             }else{
-                echo "There's no users with (". $id . ") ID. <br/>";
+                echo "This user wasn't find in database. <br/>";
+            }
+        }else{
+            echo "ERROR to connect to database";
+        }
+        $this->connection->close();
+    }
+
+    public function listAll(){
+        $this->connection = DBConnection::connect();
+        if($this->connection!=null){
+            $sql = "SELECT * FROM users";
+            $result = $this->connection->query($sql);
+
+            if($result->num_rows > 0){
+                //Output data of each row
+                while($row = $result->fetch_assoc()){
+                    echo "ID: " . $row["id"]. "Name: " . $row["name"] . "Nickname:" . $row["nickname"] . "Email: " . $row["email"] . "<br>";
+                }
+            }else{
+                echo "There's no products. <br/>";
             }
         }else{
             echo "ERROR to connect to database";
@@ -70,21 +90,5 @@ class UserDAO{
         $this->connection->close();
     }
 
-    /*public function update($id, $change){
-        //Connecting to database
-        $this->connection = DBConnection::connect();
-        if($this->connection!=null){
-            $sql = "UPDATE users SET WHERE id = '$id'";
-
-            if($this->connection->query($sql) === TRUE){
-                echo "Deleted successfully";
-            }else{
-                echo "ERROR deleting record " . $connection->error;
-            }
-        }else{
-            echo "ERROR to connect to database";
-        }
-        $this->connection->close();
-    }*/
 }
 ?>

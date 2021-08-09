@@ -2,7 +2,7 @@
 require_once 'model/product.php';
 require_once 'DAO/dbConnection.php';
 
-class UserDAO{
+class ProductDAO{
     private $connection;
 
     public function __construct(){
@@ -34,7 +34,7 @@ class UserDAO{
     public function search($search){
         $this->connection = DBConnection::connect();
         if($this->connection!=null){
-            $sql = "SELECT * from products WHERE id = '$id'";
+            $sql = "SELECT * from products WHERE id = '$search%' or name like '$search%'";
             $result = $this->connection->query($sql);
 
             if($result->num_rows > 0){
@@ -43,7 +43,7 @@ class UserDAO{
                     echo "ID: " . $row["id"]. "Name: " . $row["name"] . "Price:" . $row["price"] . "<br>";
                 }
             }else{
-                echo "There's no product with (". $id . ") ID. <br/>";
+                echo "This product wasn't find in database. <br/>";
             }
         }else{
             echo "ERROR to connect to database";
@@ -55,7 +55,20 @@ class UserDAO{
         $this->connection = DBConnection::connect();
         if($this->connection!=null){
             $sql = "SELECT * FROM products";
+            $result = $this->connection->query($sql);
+
+            if($result->num_rows > 0){
+                //Output data of each row
+                while($row = $result->fetch_assoc()){
+                    echo "ID: " . $row["id"]. "Name: " . $row["name"] . "Price:" . $row["price"] . "<br>";
+                }
+            }else{
+                echo "There's no products. <br/>";
+            }
+        }else{
+            echo "ERROR to connect to database";
         }
+        $this->connection->close();
     }
 
     public function delete($id){
