@@ -4,5 +4,6 @@ require_once "controller/userController.php";
 echo "welcome";
 $ut = new UserController;
 $ut->add();
+$ut->search();
 ?>
  

@@ -4,10 +4,19 @@
 
     class UserController{
         
+        private $userdao;
+
+        public function __construct(){
+            $this->userdao = new UserDAO;
+        }
+
         public function add(){
-            $userdao = new UserDAO;
             $u = new User("test2", "t2", "123", "oi2@test.com");
-            $userdao->insert($u);
+            $this->userdao->insert($u);
+        }
+
+        public function search(){
+            $this->userdao->searchId(2);
         }
 
         public function listAll(){
