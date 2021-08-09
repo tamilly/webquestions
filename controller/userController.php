@@ -16,7 +16,11 @@
         }
 
         public function search(){
-            $this->userdao->searchId(2);
+            $this->userdao->searchId(9);
+        }
+
+        public function delete(){
+            $this->userdao->delete(5);
         }
 
         public function listAll(){

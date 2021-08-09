@@ -5,5 +5,6 @@ echo "welcome";
 $ut = new UserController;
 $ut->add();
 $ut->search();
+$ut->delete();
 ?>
  
