@@ -7,19 +7,23 @@ class DBConnection{
         //
     }
     //Create connection
-    public static function connect(){
-        $this->con = new mysqli("localhost:3306", "root", "", "dbweb");
+    public function connect(){
+        $this->con = mysqli_connect("localhost:3306", "root", "", "dbweb");
         //Check connection
-        if($con->connect_error){
-            die("Connection failed: " . $con->connect_error);
+        if(!$this->con){
+            die("Connection failed: " . mysqli_connect_error());
         }
         echo "Connected successfully";
     }
 
-    public static function close_connection(){
-        $this->con->close();
+    public function close_connection(){
+        mysqli_close($this->con);
     }
     
-
+    public function test(){
+        $this->con = 1;
+        echo $this->con;
+        echo "its working";
+    }
 }
 ?>

@@ -1,4 +1,5 @@
 <?php
+//not using**********************************************************
     class DatabaseCon{
         private $conn;
 
