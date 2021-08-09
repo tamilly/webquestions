@@ -12,8 +12,9 @@ class DBConnection{
         //Check connection
         if(!$this->con){
             die("Connection failed: " . mysqli_connect_error());
+            return 0;
         }
-        echo "Connected successfully";
+        return 1;
     }
 
     public function close_connection(){

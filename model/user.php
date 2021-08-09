@@ -6,10 +6,10 @@
         private $email;
         private $password;
 
-        public function __construct($id, $name, $nickname, $email){
-            $this->id = $id;
+        public function __construct($name, $nickname, $password, $email){
             $this->name = $name;
             $this->nickname = $nickname;
+            $this->password = $password;
             $this->email = $email;
         }
 

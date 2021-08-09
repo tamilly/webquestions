@@ -1,7 +1,8 @@
 <?php
 require_once "DAO/userDAO.php";
+require_once "controller/userController.php";
 echo "welcome";
-$users = new UserDAO;
-$users->insert();
+$ut = new UserController;
+$ut->add();
 ?>
  
