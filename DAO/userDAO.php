@@ -11,11 +11,11 @@ class UserDAO{
 
     public function insert($user){ //Get user from Controller.php
         //Connecting to database
-        $connection = DBConnection::connect();
-        if($connection!=null){
+        $this->connection = DBConnection::connect();
+        if($this->connection!=null){
             //Getting user data
             //user ID is auto_increment, so I don't need to add it here
-            $stmt = $connection->prepare("INSERT INTO users(name, nickname, pwd, email) VALUES (?,?,?,?)");
+            $stmt = $this->connection->prepare("INSERT INTO users(name, nickname, pwd, email) VALUES (?,?,?,?)");
             $stmt->bind_param("ssss", $n, $nn, $pwd, $e);
 
             $n = $user->getName();
@@ -32,14 +32,13 @@ class UserDAO{
             }*/
             echo "Added successfully! <br/>";
             $stmt->close();
-            $connection->close();
         }else{
             echo "ERROR to connect to database";
         }
     }
 
     public function searchId(){
-
+        $this->connection = DBConnection::connect();
     }
 
     public function delete($user){
