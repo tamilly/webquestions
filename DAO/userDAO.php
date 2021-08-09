@@ -1,8 +1,9 @@
 <?php
 require_once 'model/user.php';
-require_once 'DAO/dbConnection.php'
+require_once 'DAO/dbConnection.php';
+
 class UserDAO{
-    public $connection;
+    private $connection;
 
     private function __construct(){
         //
