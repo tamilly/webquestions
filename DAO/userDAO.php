@@ -33,10 +33,10 @@ class UserDAO{
         }
     }
 
-    public function searchId($id){
+    public function search($search){
         $this->connection = DBConnection::connect();
         if($this->connection!=null){
-            $sql = "SELECT * from users WHERE id = '$id'";
+            $sql = "SELECT * from users WHERE id = '$search' or name like '$search'";
             $result = $this->connection->query($sql);
 
             if($result->num_rows > 0){
@@ -69,5 +69,22 @@ class UserDAO{
         }
         $this->connection->close();
     }
+
+    /*public function update($id, $change){
+        //Connecting to database
+        $this->connection = DBConnection::connect();
+        if($this->connection!=null){
+            $sql = "UPDATE users SET WHERE id = '$id'";
+
+            if($this->connection->query($sql) === TRUE){
+                echo "Deleted successfully";
+            }else{
+                echo "ERROR deleting record " . $connection->error;
+            }
+        }else{
+            echo "ERROR to connect to database";
+        }
+        $this->connection->close();
+    }*/
 }
 ?>
